@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Motoboy | Entregas rápidas e seguras</title>
+    <meta name="description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp.">
+    
+    <!-- Meta tags Open Graph (para WhatsApp, Facebook, Instagram, Telegram) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://david-motoboy.netlify.app">
+    <meta property="og:title" content="David Motoboy | Entregas rápidas e seguras">
+    <meta property="og:description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp.">
+    <meta property="og:image" content="https://david-motoboy.netlify.app/images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Meta tags específicas para WhatsApp -->
+    <meta property="og:site_name" content="David Motoboy">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon (opcional, mas recomendado) -->
+    <link rel="icon" type="image/png" href="https://david-motoboy.netlify.app/images/logo.png">
+
+    <!-- Permite a pré-visualização da imagem ao compartilhar no status do WhatsApp -->
+    <meta name="theme-color" content="#000000">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/9db59796e12108785199c844a4658fd742f83d4c8d68a6267d165f0f3a1909ec?w=500&h=500');
+            background-size: cover;
+            background-position: center;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
+            40% { transform: translateY(-20px) scale(1.05); }
+            60% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #DAA520;
+            z-index: 1001;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/9db59796e12108785199c844a4658fd742f83d4c8d68a6267d165f0f3a1909ec?w=500&h=500');
+            background-size: cover;
+            background-position: center;
+            margin-right: 0.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a:hover {
+            color: #DAA520;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            color: #000;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(218, 165, 32, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: #DAA520;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 80%;
+            text-align: center;
+        }
+
+        .mobile-nav a:hover {
+            background: #DAA520;
+            color: #000;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23111" width="1200" height="800"/><circle cx="200" cy="200" r="2" fill="%23DAA520" opacity="0.5"/><circle cx="800" cy="300" r="2" fill="%23DAA520" opacity="0.5"/><circle cx="400" cy="600" r="2" fill="%23DAA520" opacity="0.5"/><circle cx="1000" cy="500" r="2" fill="%23DAA520" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 1.5rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .slogan {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: #cccccc;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            color: #000;
+            padding: 1.5rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            min-height: 60px;
+            min-width: 280px;
+            justify-content: center;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(218, 165, 32, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 2rem 1.5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #DAA520;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #DAA520;
+            box-shadow: 0 20px 40px rgba(218, 165, 32, 0.1);
+        }
+
+        .service-card:active {
+            transform: translateY(-2px);
+        }
+
+        .service-icon {
+            font-size: clamp(2.5rem, 6vw, 3rem);
+            color: #DAA520;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            flex-grow: 1;
+        }
+
+        .service-price {
+            font-size: clamp(1.2rem, 4vw, 1.4rem);
+            font-weight: bold;
+            color: #DAA520;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .service-btn {
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(218, 165, 32, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 2px solid #DAA520;
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            color: #DAA520;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-price {
+            color: #DAA520;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #DAA520;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(218, 165, 32, 0.1);
+            transform: scale(1.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #DAA520;
+            box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(218, 165, 32, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(135deg, #111, #1a1a1a);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-image {
+            width: clamp(200px, 50vw, 300px);
+            height: clamp(200px, 50vw, 300px);
+            border-radius: 50%;
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(4rem, 15vw, 8rem);
+            color: #000;
+            margin: 0 auto;
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/9db59796e12108785199c844a4658fd742f83d4c8d68a6267d165f0f3a1909ec?w=500&h=500');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: #DAA520;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: #cccccc;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .testimonial-stars {
+            color: #DAA520;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial p {
+            color: #cccccc;
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .testimonial-author {
+            color: #DAA520;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            padding: 3rem 1.5rem 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/9db59796e12108785199c844a4658fd742f83d4c8d68a6267d165f0f3a1909ec?w=500&h=500');
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cccccc;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            padding: 0.5rem;
+        }
+
+        .contact-item i {
+            color: #DAA520;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: #DAA520;
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            transition: transform 0.3s ease;
+            padding: 1rem;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-copyright {
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            margin-top: 2rem;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+        }
+
+        /* Floating WhatsApp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 1.5rem;
+            background: #25d366;
+            color: white;
+            width: clamp(60px, 15vw, 70px);
+            height: clamp(60px, 15vw, 70px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
+            text-decoration: none;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #DAA520;
+            animation: bounce 2s infinite;
+            font-size: 1.5rem;
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .service-card:hover {
+                transform: none;
+            }
+            
+            .service-card:active {
+                transform: scale(0.98);
+                border-color: #DAA520;
+            }
+            
+            .cta-btn:hover,
+            .whatsapp-btn:hover,
+            .service-btn:hover {
+                transform: none;
+            }
+            
+            .cta-btn:active,
+            .whatsapp-btn:active,
+            .service-btn:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .whatsapp-btn {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .logo-image {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .services {
+                padding: 1.5rem 1rem 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .service-card {
+                margin-bottom: 1rem;
+                min-height: 260px;
+                padding: 1.5rem;
+            }
+            
+            .about-container {
+                gap: 2rem;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .contact-item {
+                justify-content: center;
+            }
+            
+            .nav-container {
+                padding: 0.8rem 1rem;
+            }
+            
+            .hero {
+                min-height: 100vh;
+                padding-top: 80px;
+            }
+            
+            .cta-btn {
+                width: 90%;
+                max-width: 320px;
+                padding: 1.2rem 2rem;
+            }
+            
+            .floating-whatsapp {
+                bottom: 1.5rem;
+                right: 1rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+                width: 95%;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                margin-bottom: 1.5rem;
+            }
+
+            .loader-logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services {
+                padding: 1rem 0.8rem 2.5rem;
+            }
+            
+            .about {
+                padding: 3rem 1rem;
+            }
+            
+            .testimonials {
+                padding: 3rem 1rem;
+            }
+            
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+            
+            .service-card {
+                padding: 1.2rem;
+                min-height: 240px;
+            }
+            
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .social-links a {
+                padding: 0.8rem;
+            }
+
+            .nav-container {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .services-grid {
+                gap: 0.8rem;
+            }
+
+            .loader-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .services {
+                padding: 0.8rem 0.5rem 2rem;
+            }
+
+            .service-card {
+                padding: 1rem;
+                min-height: 220px;
+            }
+
+            .modal-content {
+                padding: 1rem;
+                margin: 0.5rem;
+            }
+
+            .footer {
+                padding: 1.5rem 0.5rem 1rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .logo-image {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 4rem 1.5rem 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero .slogan {
+                font-size: 1.1rem;
+            }
+
+            .services {
+                padding: 1rem 1.5rem 2rem;
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .service-card,
+            .testimonial {
+                border-width: 0.5px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Intersection Observer Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus states for better accessibility */
+        .service-card:focus,
+        .cta-btn:focus,
+        .whatsapp-btn:focus,
+        .service-btn:focus {
+            outline: 2px solid #DAA520;
+            outline-offset: 2px;
+        }
+
+        /* Better tap targets */
+        .service-card,
+        .cta-btn,
+        .whatsapp-btn,
+        .service-btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0a0a0a;
+                color: #ffffff;
+            }
+        }
+
+        /* Improved scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DAA520;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8860B;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-logo"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-image"></div>
+                David Motoboy
+            </div>
+            <nav class="nav-menu">
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <a href="https://wa.me/5582981949758?text=Olá%20David,%20preciso%20de%20um%20serviço%20de%20motoboy!" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i>
+                <span>Chamar no WhatsApp</span>
+            </a>
+            <div class="mobile-menu" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="https://wa.me/5582981949758?text=Olá%20David,%20preciso%20de%20um%20serviço%20de%20motoboy!" style="background: #DAA520; color: #000;">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>David Motoboy</h1>
+            <p class="slogan">Precisou, Chamou, Chegou!</p>
+            <a href="https://wa.me/5582981949758?text=Olá%20David,%20preciso%20de%20um%20serviço%20de%20motoboy!" class="cta-btn">
+                <i class="fab fa-whatsapp"></i>
+                Solicitar Serviço Agora
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services fade-in" id="servicos">
+        <h2 class="section-title">Serviços Rápidos e Confiáveis</h2>
+        <div class="services-grid">
+            <div class="service-card" tabindex="0">
+                <div>
+                    <div class="service-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Entregas Expressas</h3>
+                    <p>Entregas rápidas e seguras em toda a região com total agilidade.</p>
+                    <div class="service-price">R$ 5,00</div>
+                </div>
+                <button class="service-btn" onclick="openServiceModal('express')">
+                    Solicitar Agora
+                </button>
+            </div>
+            
+            <div class="service-card" tabindex="0">
+                <div>
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Compras de Farmácia</h3>
+                    <p>Busco seus medicamentos e produtos de farmácia com urgência.</p>
+                    <div class="service-price">R$ 7,00</div>
+                </div>
+                <button class="service-btn" onclick="openServiceModal('pharmacy')">
+                    Solicitar Agora
+                </button>
+            </div>
+            
+            <div class="service-card" tabindex="0">
+                <div>
+                    <div class="service-icon">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <h3>Entregas de Lanches</h3>
+                    <p>Sua comida favorita entregue quentinha em casa.</p>
+                    <div class="service-price">R$ 5,00</div>
+                </div>
+                <button class="service-btn" onclick="openServiceModal('food')">
+                    Solicitar Agora
+                </button>
+            </div>
+            
+            <div class="service-card" tabindex="0">
+                <div>
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Retirada de Documentos</h3>
+                    <p>Retiro e entrego seus documentos importantes com segurança.</p>
+                    <div class="service-price">R$ 10,00</div>
+                </div>
+                <button class="service-btn" onclick="openServiceModal('documents')">
+                    Solicitar Agora
+                </button>
+            </div>
+            
+            <div class="service-card" tabindex="0">
+                <div>
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Pagamento de Contas</h3>
+                    <p>Pago suas contas em bancos e casas lotéricas rapidamente.</p>
+                    <div class="service-price">R$ 8,00</div>
+                </div>
+                <button class="service-btn" onclick="openServiceModal('bills')">
+                    Solicitar Agora
+                </button>
+            </div>
+            
+            <div class="service-card" tabindex="0">
+                <div>
+                    <div class="service-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Transporte de Passageiros</h3>
+                    <p>Levo você com segurança e conforto ao seu destino.</p>
+                    <div class="service-price">R$ 5,00</div>
+                </div>
+                <button class="service-btn" onclick="openServiceModal('transport')">
+                    Solicitar Agora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Modals -->
+    <div id="expressModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('expressModal')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Entregas Expressas</h2>
+                <div class="modal-price">Valor do serviço: R$ 5,00</div>
+            </div>
+            <form id="expressForm">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Retirada *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Entrega *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-textarea" placeholder="Descreva o que precisa ser entregue..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="pharmacyModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('pharmacyModal')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Compras de Farmácia</h2>
+                <div class="modal-price">Valor do serviço: R$ 7,00</div>
+            </div>
+            <form id="pharmacyForm">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nome do Medicamento *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Farmácia Desejada *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Entrega *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-textarea" placeholder="Receita médica, quantidade, etc..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="foodModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('foodModal')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Entregas de Lanches</h2>
+                <div class="modal-price">Valor do serviço: R$ 5,00</div>
+            </div>
+            <form id="foodForm">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Restaurante *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Pedido *</label>
+                    <textarea class="form-textarea" placeholder="Descreva seu pedido..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Entrega *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-textarea" placeholder="Instruções especiais..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="documentsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('documentsModal')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Retirada de Documentos</h2>
+                <div class="modal-price">Valor do serviço: R$ 10,00</div>
+            </div>
+            <form id="documentsForm">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Retirada *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Entrega *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-textarea" placeholder="Tipo de documento, informações para retirada..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="billsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('billsModal')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Pagamento de Contas</h2>
+                <div class="modal-price">Valor do serviço: R$ 8,00</div>
+            </div>
+            <form id="billsForm">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Conta *</label>
+                        <select class="form-select" required>
+                            <option value="">Selecione...</option>
+                            <option value="luz">Conta de Luz</option>
+                            <option value="agua">Conta de Água</option>
+                            <option value="telefone">Conta de Telefone</option>
+                            <option value="internet">Conta de Internet</option>
+                            <option value="cartao">Cartão de Crédito</option>
+                            <option value="financiamento">Financiamento</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Valor *</label>
+                        <input type="text" class="form-input" placeholder="R$ 0,00" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço para Entrega do Comprovante *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-textarea" placeholder="Onde pagar, data de vencimento, etc..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="transportModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('transportModal')">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Transporte de Passageiros</h2>
+                <div class="modal-price">Valor do serviço: R$ 5,00</div>
+            </div>
+            <form id="transportForm">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefone / WhatsApp *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Saída *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço de Destino *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-textarea" placeholder="Horário preferido, número de passageiros..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about fade-in" id="sobre">
+        <div class="about-container">
+            <div class="about-image"></div>
+            <div class="about-content">
+                <h2>Sobre Mim</h2>
+                <p>Sou o David, motoboy com anos de experiência em entregas rápidas e seguras. Atendo com agilidade e responsabilidade em toda a região. Meu compromisso é com a pontualidade e a satisfação dos meus clientes. Precisou, Chamou, Chegou!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials fade-in">
+        <h2 class="section-title">O que dizem nossos clientes</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="testimonial-stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <p>"Serviço excelente! O David é super pontual e confiável. Sempre que preciso, ele está pronto para ajudar."</p>
+                <div class="testimonial-author">- Maria Silva</div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <p>"Rapidez e eficiência são as palavras que definem o trabalho do David. Super recomendo!"</p>
+                <div class="testimonial-author">- João Santos</div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <p>"Profissional dedicado e responsável. Sempre entrega no prazo e com total segurança."</p>
+                <div class="testimonial-author">- Ana Costa</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-logo"></div>
+            
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(82) 98194-9758</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>david.motoboy@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Atendimento em toda região</span>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://wa.me/5582981949758" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/alvs_david" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>© 2025 David Motoboy - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/5582981949758?text=Olá%20David,%20preciso%20de%20um%20serviço%20de%20motoboy!" class="floating-whatsapp" title="Chamar no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileMenuIcon = mobileMenuBtn.querySelector('i');
+
+        function toggleMobileMenu() {
+            const isActive = mobileNav.classList.contains('active');
+            
+            if (isActive) {
+                mobileNav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                mobileMenuIcon.className = 'fas fa-bars';
+                document.body.style.overflow = 'auto';
+            } else {
+                mobileNav.classList.add('active');
+                mobileOverlay.classList.add('active');
+                mobileMenuIcon.className = 'fas fa-times';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (link.getAttribute('href').startsWith('#')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Modal functions
+        function openServiceModal(serviceType) {
+            const modalId = serviceType + 'Modal';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        // Form submissions
+        const serviceNames = {
+            'expressForm': 'Entregas Expressas',
+            'pharmacyForm': 'Compras de Farmácia',
+            'foodForm': 'Entregas de Lanches',
+            'documentsForm': 'Retirada de Documentos',
+            'billsForm': 'Pagamento de Contas',
+            'transportForm': 'Transporte de Passageiros'
+        };
+
+        const servicePrices = {
+            'expressForm': '5,00',
+            'pharmacyForm': '7,00',
+            'foodForm': '5,00',
+            'documentsForm': '10,00',
+            'billsForm': '8,00',
+            'transportForm': '5,00'
+        };
+
+        function handleFormSubmit(formId, e) {
+            e.preventDefault();
+            
+            const form = document.getElementById(formId);
+            const formData = new FormData(form);
+            const inputs = form.querySelectorAll('input, textarea, select');
+            
+            let message = `🚀 *Solicitação de Serviço*\n\n`;
+            message += `*Serviço:* ${serviceNames[formId]}\n`;
+            message += `*Valor:* R$ ${servicePrices[formId]}\n\n`;
+            
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') {
+                    const label = input.closest('.form-group').querySelector('.form-label').textContent;
+                    message += `*${label}:* ${input.value}\n`;
+                }
+            });
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/5582981949758?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            // Close modal and reset form
+            const modalId = formId.replace('Form', 'Modal');
+            closeModal(modalId);
+            form.reset();
+        }
+
+        // Add event listeners to all forms
+        Object.keys(serviceNames).forEach(formId => {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.addEventListener('submit', (e) => handleFormSubmit(formId, e));
+            }
+        });
+
+        // Service card click handlers (for accessibility)
+        document.querySelectorAll('.service-card').forEach(card => {
+            // Keyboard accessibility
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const button = this.querySelector('.service-btn');
+                    if (button) {
+                        button.click();
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScrollY = 0;
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', function() {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+
+            // Hide header on scroll down, show on scroll up
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Touch feedback for mobile
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.service-card, .cta-btn, .service-btn').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Prevent zoom on double tap for iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Swipe to close mobile menu
+        let startX = 0;
+        let startY = 0;
+
+        mobileNav.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        mobileNav.addEventListener('touchmove', function(e) {
+            if (!startX || !startY) return;
+
+            const diffX = startX - e.touches[0].clientX;
+            const diffY = startY - e.touches[0].clientY;
+
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX < -50) { // Swipe right to close
+                    toggleMobileMenu();
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+
+        // Input mask for phone numbers
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value.length <= 2) {
+                        value = `(${value}`;
+                    } else if (value.length <= 7) {
+                        value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                    } else if (value.length <= 11) {
+                        value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+                    } else {
+                        value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
+                    }
+                }
+                e.target.value = value;
+            });
+        });
+
+        // Currency mask for value inputs
+        document.querySelectorAll('input[placeholder*="R$"]').forEach(input => {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = (parseInt(value) / 100).toFixed(2);
+                    value = 'R$ ' + value.replace('.', ',');
+                } else {
+                    value = '';
+                }
+                e.target.value = value;
+            });
+        });
+
+        // Optimize scroll performance
+        let ticking = false;
+
+        function updateScrollEffects() {
+            // Add any scroll-based animations here
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        });
+
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            // Log performance metrics
+            const perfData = performance.getEntriesByType('navigation')[0];
+            console.log('Page load time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+        });
+    </script>
+</body>
+</html>
