@@ -1,0 +1,44 @@
+{
+    "name": "David Motoboy - Entregas Rápidas e Seguras",
+    "short_name": "Motoboy",
+    "description": "Entregas rápidas, seguras e pontuais — Precisou, chamou, chegou!",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#FFD700",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "pt-BR",
+    "icons": [
+      {
+        "src": "/assets/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable any"
+      },
+      {
+        "src": "/assets/icons/icon-512x512.png",
+        "sizes": "512x512", 
+        "type": "image/png",
+        "purpose": "maskable any"
+      },
+      {
+        "src": "/assets/icons/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "/assets/icons/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Chamar WhatsApp",
+        "short_name": "WhatsApp",
+        "description": "Chamar David diretamente no WhatsApp",
+        "url": "https://wa.me/5582981949758?text=Olá%20David,%20preciso%20de%20um%20serviço%20de%20motoboy!"
+      }
+    ]
+  }
