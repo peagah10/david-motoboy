@@ -3,32 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Motoboy | Entregas rápidas e seguras</title>
-    <meta name="description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp.">
     
-    <!-- Meta tags Open Graph (para WhatsApp, Facebook, Instagram, Telegram) -->
+    <!-- SEO Meta Tags Essenciais -->
+    <title>David Motoboy - Entregas Rápidas e Seguras | Motoboy Profissional</title>
+    <meta name="description" content="Serviços de motoboy em Maceió e região. Entregas expressas, medicamentos, documentos, pagamento de contas. Precisou, chamou, chegou! ⚡">
+    <meta name="keywords" content="motoboy, entregas rápidas, motoboy Maceió, entrega medicamentos, pagamento contas, documentos, transporte passageiros, delivery">
+    <meta name="author" content="David Motoboy">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://david-motoboy.netlify.app/">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://david-motoboy.netlify.app/">
-    <meta property="og:title" content="David Motoboy | Entregas rápidas e seguras">
-    <meta property="og:description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp.">
-    <meta property="og:image" content="https://david-motoboy.netlify.app/logo.jpg">
+    <meta property="og:title" content="David Motoboy - Entregas Rápidas e Seguras">
+    <meta property="og:description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp. ⚡🏍️">
+    <meta property="og:image" content="https://david-motoboy.netlify.app/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-
-    <!-- Meta tags específicas para WhatsApp -->
     <meta property="og:site_name" content="David Motoboy">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-
-    <!-- Favicon (opcional, mas recomendado) -->
-    <link rel="icon" type="image/png" href="https://david-motoboy.netlify.app/logo.jpg">
-
-    <!-- Permite a pré-visualização da imagem ao compartilhar no status do WhatsApp -->
-    <meta name="theme-color" content="#000000">
+    <meta name="twitter:url" content="https://david-motoboy.netlify.app/">
+    <meta name="twitter:title" content="David Motoboy - Entregas Rápidas e Seguras">
+    <meta name="twitter:description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp.">
+    <meta name="twitter:image" content="https://david-motoboy.netlify.app/assets/og-image.jpg">
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#FFD700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="David Motoboy">
+    <meta name="mobile-web-app-capable" content="yes">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
     
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-touch-icon-76x76.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="SEU_CODIGO_DE_VERIFICACAO_AQUI">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://david-motoboy.netlify.app/",
+        "name": "David Motoboy",
+        "alternateName": "Motoboy David",
+        "description": "Serviços de entrega rápida e transporte com motoboy profissional em Maceió e região. Entregas expressas, medicamentos, documentos e pagamento de contas.",
+        "url": "https://david-motoboy.netlify.app/",
+        "telephone": "+55-82-98194-9758",
+        "email": "david.motoboy@gmail.com",
+        "logo": "https://david-motoboy.netlify.app/assets/logo-512x512.png",
+        "image": "https://david-motoboy.netlify.app/assets/og-image.jpg",
+        "slogan": "Precisou, Chamou, Chegou!",
+        "priceRange": "R$5,00 - R$15,00",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Maceió",
+            "addressRegion": "AL",
+            "addressCountry": "BR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-9.6658",
+            "longitude": "-35.7353"
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "-9.6658",
+                "longitude": "-35.7353"
+            },
+            "geoRadius": "50000"
+        },
+        "serviceType": [
+            "Entrega de medicamentos",
+            "Entrega de documentos",
+            "Pagamento de contas",
+            "Transporte de passageiros",
+            "Entregas expressas",
+            "Depósitos bancários"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços de Motoboy",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Entregas Expressas",
+                        "description": "Entregas rápidas e seguras em toda a região"
+                    },
+                    "price": "5.00",
+                    "priceCurrency": "BRL"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Compras de Farmácia",
+                        "description": "Busco seus medicamentos e produtos de farmácia"
+                    },
+                    "price": "7.00",
+                    "priceCurrency": "BRL"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Transporte de Passageiros",
+                        "description": "Transporte seguro e confortável"
+                    },
+                    "price": "5.00",
+                    "priceCurrency": "BRL"
+                }
+            ]
+        },
+        "sameAs": [
+            "https://wa.me/5582981949758",
+            "https://instagram.com/alvs_david"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-82-98194-9758",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese",
+            "areaServed": "BR"
+        },
+        "openingHours": "Mo-Su 06:00-22:00",
+        "paymentAccepted": ["Cash", "Pix"],
+        "currenciesAccepted": "BRL"
+    }
+    </script>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    
+    <!-- Rest of your existing CSS styles here -->
     <style>
+        /* Your existing CSS styles remain the same */
         * {
             margin: 0;
             padding: 0;
@@ -685,6 +820,29 @@
             font-size: 1.5rem;
         }
 
+        /* PWA Install Button */
+        .install-app {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 1rem;
+            background: linear-gradient(45deg, #DAA520, #F4A460);
+            color: #000;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 1000;
+            animation: slideInRight 0.5s ease;
+            box-shadow: 0 4px 20px rgba(218, 165, 32, 0.3);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
         /* Touch-friendly improvements */
         @media (hover: none) and (pointer: coarse) {
             .service-card:hover {
@@ -783,6 +941,13 @@
             .loader-logo {
                 width: 100px;
                 height: 100px;
+            }
+
+            .install-app {
+                top: 80px;
+                right: 0.5rem;
+                font-size: 0.8rem;
+                padding: 0.6rem 1rem;
             }
         }
 
@@ -966,6 +1131,12 @@
     </style>
 </head>
 <body>
+    <!-- Install App Button -->
+    <button id="installApp" class="install-app">
+        📱 Instalar App
+    </button>
+
+    <!-- Rest of your existing HTML content -->
     <!-- Loader -->
     <div class="loader" id="loader">
         <div class="loader-logo"></div>
@@ -1431,6 +1602,45 @@
     </a>
 
     <script>
+        // PWA Installation
+        let deferredPrompt;
+        const installButton = document.getElementById('installApp');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installButton.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installButton.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installButton.style.display = 'none';
+            console.log('PWA foi instalado');
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('SW registrado com sucesso: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW falhou ao registrar: ', registrationError);
+                    });
+            });
+        }
+
         // Loader
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -1741,7 +1951,17 @@
             const perfData = performance.getEntriesByType('navigation')[0];
             console.log('Page load time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
         });
+
+        // Track PWA metrics
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Track PWA prompt shown
+            gtag('event', 'pwa_prompt_shown');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            // Track PWA installation
+            gtag('event', 'pwa_installed');
+        });
     </script>
 </body>
-
 </html>
