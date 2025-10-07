@@ -6,7 +6,7 @@
     
     <!-- SEO Meta Tags Essenciais -->
     <title>David Motoboy - Entregas Rápidas e Seguras | Motoboy Profissional</title>
-    <meta name="description" content="Serviços de motoboy em Maceió e região. Entregas expressas, medicamentos, documentos, pagamento de contas. Precisou, chamou, chegou! ⚡">
+    <meta name="description" content="Serviços de motoboy em Maceió e região. Entregas expressas, medicamentos, documentos, pagamento de contas. Precisou, chamou, chegou!">
     <meta name="keywords" content="motoboy, entregas rápidas, motoboy Maceió, entrega medicamentos, pagamento contas, documentos, transporte passageiros, delivery">
     <meta name="author" content="David Motoboy">
     <meta name="robots" content="index, follow">
@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://david-motoboy.netlify.app/">
     <meta property="og:title" content="David Motoboy - Entregas Rápidas e Seguras">
-    <meta property="og:description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp. ⚡🏍️">
+    <meta property="og:description" content="Precisou, Chamou, Chegou! Entregas rápidas, seguras e com atendimento direto pelo WhatsApp.">
     <meta property="og:image" content="https://david-motoboy.netlify.app/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -1616,14 +1616,102 @@
     </a>
 
     <script>
-        // PWA Installation
+        // PWA Installation - VERSÃO CORRIGIDA
         let deferredPrompt;
         const installButton = document.getElementById('installApp');
 
+        // Detect platform
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        }
+
+        function isAndroid() {
+            return /Android/.test(navigator.userAgent);
+        }
+
+        function isInStandaloneMode() {
+            return (window.matchMedia('(display-mode: standalone)').matches) || 
+                   (window.navigator.standalone) || 
+                   document.referrer.includes('android-app://');
+        }
+
+        // Show install button logic
+        function showInstallButton() {
+            if (!isInStandaloneMode()) {
+                installButton.style.display = 'flex';
+                
+                if (isIOS()) {
+                    installButton.innerHTML = '<i class="fas fa-plus"></i><span class="install-text">Instalar App</span>';
+                } else {
+                    installButton.innerHTML = '<i class="fas fa-download"></i><span class="install-text">Instalar App</span>';
+                }
+            }
+        }
+
+        // Show iOS installation instructions
+        function showIOSInstructions() {
+            showCustomModal(
+                'Instalar App no iPhone',
+                `
+                <div style="text-align: left; line-height: 1.6;">
+                    <p style="margin-bottom: 1rem; color: #cccccc;">Para instalar este app no seu iPhone:</p>
+                    <ol style="color: #cccccc; padding-left: 1.2rem;">
+                        <li style="margin-bottom: 0.5rem;">Toque no botão <strong style="color: #DAA520;">Compartilhar</strong> <i class="fas fa-share" style="color: #DAA520;"></i> na parte inferior da tela</li>
+                        <li style="margin-bottom: 0.5rem;">Selecione <strong style="color: #DAA520;">"Adicionar à Tela Inicial"</strong> <i class="fas fa-plus-square" style="color: #DAA520;"></i></li>
+                        <li style="margin-bottom: 0.5rem;">Toque em <strong style="color: #DAA520;">"Adicionar"</strong> no canto superior direito</li>
+                        <li>O app aparecerá na sua tela inicial!</li>
+                    </ol>
+                </div>
+                `
+            );
+        }
+
+        // Show Android installation instructions
+        function showAndroidInstructions() {
+            showCustomModal(
+                'Instalar App no Android',
+                `
+                <div style="text-align: left; line-height: 1.6;">
+                    <p style="margin-bottom: 1rem; color: #cccccc;">Para instalar este app no seu Android:</p>
+                    <ol style="color: #cccccc; padding-left: 1.2rem;">
+                        <li style="margin-bottom: 0.5rem;">Toque no menu <strong style="color: #DAA520;">⋮</strong> do navegador</li>
+                        <li style="margin-bottom: 0.5rem;">Selecione <strong style="color: #DAA520;">"Adicionar à tela inicial"</strong> ou <strong style="color: #DAA520;">"Instalar app"</strong></li>
+                        <li style="margin-bottom: 0.5rem;">Confirme tocando em <strong style="color: #DAA520;">"Adicionar"</strong></li>
+                        <li>O app aparecerá na sua tela inicial!</li>
+                    </ol>
+                </div>
+                `
+            );
+        }
+
+        // Custom modal function
+        function showCustomModal(title, content) {
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
+                    <div class="modal-header">
+                        <h2 class="modal-title">${title}</h2>
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        ${content}
+                    </div>
+                    <button onclick="this.closest('.modal').remove()" class="submit-btn">
+                        Entendi
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // PWA event listeners
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installButton.style.display = 'flex';
+            showInstallButton();
         });
 
         installButton.addEventListener('click', async () => {
@@ -1634,12 +1722,25 @@
                     installButton.style.display = 'none';
                 }
                 deferredPrompt = null;
+            } else if (isIOS()) {
+                showIOSInstructions();
+            } else if (isAndroid()) {
+                showAndroidInstructions();
             }
         });
 
         window.addEventListener('appinstalled', () => {
             installButton.style.display = 'none';
             console.log('PWA foi instalado');
+        });
+
+        // Show install button on load if not in standalone mode
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (!isInStandaloneMode()) {
+                    showInstallButton();
+                }
+            }, 2000); // Wait 2 seconds after page load
         });
 
         // Service Worker Registration
@@ -1969,12 +2070,16 @@
         // Track PWA metrics
         window.addEventListener('beforeinstallprompt', (e) => {
             // Track PWA prompt shown
-            gtag('event', 'pwa_prompt_shown');
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'pwa_prompt_shown');
+            }
         });
 
         window.addEventListener('appinstalled', () => {
             // Track PWA installation
-            gtag('event', 'pwa_installed');
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'pwa_installed');
+            }
         });
     </script>
 </body>
