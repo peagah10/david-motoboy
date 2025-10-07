@@ -1,4 +1,4 @@
-const CACHE_NAME = 'david-motoboy-v1.0.0';
+const CACHE_NAME = 'david-motoboy-v1.0.1';
 
 // Lista apenas arquivos que SABEMOS que existem
 const urlsToCache = [
@@ -114,3 +114,4 @@ self.addEventListener('fetch', event => {
       })
   );
 });
+
