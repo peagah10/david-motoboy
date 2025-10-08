@@ -151,7 +151,7 @@
             "availableLanguage": "Portuguese",
             "areaServed": "BR"
         },
-        "openingHours": "Mo-Su 06:00-22:00",
+        "openingHours": "Mo-Sa 07:00-19:00, Su 09:00-15:00",
         "paymentAccepted": ["Cash", "Pix"],
         "currenciesAccepted": "BRL"
     }
@@ -407,6 +407,43 @@
             font-size: clamp(1.1rem, 4vw, 1.5rem);
             margin-bottom: 2rem;
             color: #cccccc;
+        }
+
+        .opening-hours {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(218, 165, 32, 0.1);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .opening-hours-title {
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .opening-hours-title i {
+            margin-right: 0.5rem;
+        }
+
+        .opening-hours-content {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .opening-hours-content div {
+            margin-bottom: 0.3rem;
+        }
+
+        .opening-hours-content div:last-child {
+            margin-bottom: 0;
         }
 
         @keyframes fadeInUp {
@@ -963,6 +1000,19 @@
                 width: 100px;
                 height: 100px;
             }
+
+            .opening-hours {
+                padding: 0.8rem;
+                margin-top: 1rem;
+            }
+
+            .opening-hours-title {
+                font-size: 1rem;
+            }
+
+            .opening-hours-content {
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1016,6 +1066,19 @@
                 width: 80px;
                 height: 80px;
             }
+
+            .opening-hours {
+                padding: 0.7rem;
+                margin-top: 0.8rem;
+            }
+
+            .opening-hours-title {
+                font-size: 0.95rem;
+            }
+
+            .opening-hours-content {
+                font-size: 0.85rem;
+            }
         }
 
         /* Extra small screens */
@@ -1045,6 +1108,19 @@
             .logo-image {
                 width: 35px;
                 height: 35px;
+            }
+
+            .opening-hours {
+                padding: 0.6rem;
+                margin-top: 0.6rem;
+            }
+
+            .opening-hours-title {
+                font-size: 0.9rem;
+            }
+
+            .opening-hours-content {
+                font-size: 0.8rem;
             }
         }
 
@@ -1193,6 +1269,20 @@
         <div class="hero-content">
             <h1>David Motoboy</h1>
             <p class="slogan">Precisou, Chamou, Chegou!</p>
+            <div class="opening-hours">
+                <div class="opening-hours-title">
+                    <i class="fas fa-clock"></i>
+                    Horário de Funcionamento
+                </div>
+                <div class="opening-hours-content">
+                    <div>
+                        <strong>Segunda a Sábado:</strong> 07:00 às 19:00
+                    </div>
+                    <div>
+                        <strong>Domingo:</strong> 09:00 às 15:00
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
