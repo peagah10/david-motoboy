@@ -75,7 +75,7 @@
         "logo": "https://david-motoboy.netlify.app/assets/logo-512x512.png",
         "image": "https://david-motoboy.netlify.app/assets/og-image.jpg",
         "slogan": "Precisou, Chamou, Chegou!",
-        "priceRange": "R$5,00 - R$15,00",
+        "priceRange": "R$4,00 - R$15,00",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Maceió",
@@ -102,7 +102,8 @@
             "Pagamento de contas",
             "Transporte de passageiros",
             "Entregas expressas",
-            "Depósitos bancários"
+            "Depósitos bancários",
+            "Retirada e envio nos correios"
         ],
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -115,15 +116,15 @@
                         "name": "Entregas Expressas",
                         "description": "Entregas rápidas e seguras em toda a região"
                     },
-                    "price": "5.00",
+                    "price": "4.00",
                     "priceCurrency": "BRL"
                 },
                 {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Compras de Farmácia",
-                        "description": "Busco seus medicamentos e produtos de farmácia"
+                        "name": "Retirada e envio nos correios",
+                        "description": "Retirada e envio de encomendas nos correios com agilidade"
                     },
                     "price": "7.00",
                     "priceCurrency": "BRL"
@@ -1313,13 +1314,13 @@
             <div class="service-card" tabindex="0">
                 <div>
                     <div class="service-icon">
-                        <i class="fas fa-pills"></i>
+                        <i class="fas fa-box"></i>
                     </div>
-                    <h3>Compras de Farmácia</h3>
-                    <p>Busco seus medicamentos e produtos de farmácia com urgência.</p>
-                    <div class="service-price">R$ 5,00</div>
+                    <h3>Retirada e envio nos correios</h3>
+                    <p>Faço a retirada e o envio de encomendas nos correios com agilidade e segurança.</p>
+                    <div class="service-price">R$ 7,00</div>
                 </div>
-                <button class="service-btn" onclick="openServiceModal('pharmacy')">
+                <button class="service-btn" onclick="openServiceModal('postal')">
                     Solicitar Agora
                 </button>
             </div>
@@ -1416,14 +1417,14 @@
         </div>
     </div>
 
-    <div id="pharmacyModal" class="modal">
+    <div id="postalModal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('pharmacyModal')">&times;</button>
+            <button class="close-btn" onclick="closeModal('postalModal')">&times;</button>
             <div class="modal-header">
-                <h2 class="modal-title">Compras de Farmácia</h2>
-                <div class="modal-price">Valor do serviço: R$ 5,00</div>
+                <h2 class="modal-title">Retirada e envio nos correios</h2>
+                <div class="modal-price">Valor do serviço: R$ 7,00</div>
             </div>
-            <form id="pharmacyForm">
+            <form id="postalForm">
                 <div class="form-group">
                     <label class="form-label">Nome Completo *</label>
                     <input type="text" class="form-input" required>
@@ -1433,20 +1434,25 @@
                     <input type="tel" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Nome do Medicamento *</label>
-                    <input type="text" class="form-input" required>
+                    <label class="form-label">Tipo de Serviço *</label>
+                    <select class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="retirada">Retirada de encomenda</option>
+                        <option value="envio">Envio de encomenda</option>
+                        <option value="ambos">Retirada e envio</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Farmácia Desejada *</label>
-                    <input type="text" class="form-input" required>
+                    <label class="form-label">Agência dos Correios *</label>
+                    <input type="text" class="form-input" placeholder="Informe a agência dos correios" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Endereço de Entrega *</label>
+                    <label class="form-label">Endereço para entrega/retirada *</label>
                     <input type="text" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Observações</label>
-                    <textarea class="form-textarea" placeholder="Receita médica, quantidade, etc..."></textarea>
+                    <textarea class="form-textarea" placeholder="Código de rastreamento, destinatário, tipo de encomenda..."></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Enviar Solicitação</button>
             </form>
@@ -1946,7 +1952,7 @@
         // Form submissions
         const serviceNames = {
             'expressForm': 'Entregas Expressas',
-            'pharmacyForm': 'Compras de Farmácia',
+            'postalForm': 'Retirada e envio nos correios',
             'depositForm': 'Depósitos Bancários',
             'documentsForm': 'Retirada de Documentos',
             'billsForm': 'Pagamento de Contas',
@@ -1955,7 +1961,7 @@
 
         const servicePrices = {
             'expressForm': '4,00',
-            'pharmacyForm': '5,00',
+            'postalForm': '7,00',
             'depositForm': '6,00',
             'documentsForm': '7,00',
             'billsForm': '6,00',
@@ -2177,4 +2183,3 @@
     </script>
 </body>
 </html>
-
