@@ -6,8 +6,8 @@
     
     <!-- SEO Meta Tags Essenciais -->
     <title>David Motoboy - Entregas Rápidas e Seguras | Motoboy Profissional</title>
-    <meta name="description" content="Serviços de motoboy em Maceió e região. Entregas expressas, medicamentos, documentos, pagamento de contas. Precisou, chamou, chegou!">
-    <meta name="keywords" content="motoboy, entregas rápidas, motoboy Maceió, entrega medicamentos, pagamento contas, documentos, transporte passageiros, delivery">
+    <meta name="description" content="Serviços de motoboy em Maceió e região. Entregas expressas, medicamentos, documentos, pagamento de contas, exames médicos. Precisou, chamou, chegou!">
+    <meta name="keywords" content="motoboy, entregas rápidas, motoboy Maceió, entrega medicamentos, pagamento contas, documentos, exames médicos, delivery">
     <meta name="author" content="David Motoboy">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://david-motoboy.netlify.app/">
@@ -68,7 +68,7 @@
         "@id": "https://david-motoboy.netlify.app/",
         "name": "David Motoboy",
         "alternateName": "Motoboy David",
-        "description": "Serviços de entrega rápida e transporte com motoboy profissional em Maceió e região. Entregas expressas, medicamentos, documentos e pagamento de contas.",
+        "description": "Serviços de entrega rápida e transporte com motoboy profissional em Maceió e região. Entregas expressas, medicamentos, documentos, exames médicos e pagamento de contas.",
         "url": "https://david-motoboy.netlify.app/",
         "telephone": "+55-82-98194-9758",
         "email": "david.motoboy@gmail.com",
@@ -100,7 +100,7 @@
             "Entrega de medicamentos",
             "Entrega de documentos",
             "Pagamento de contas",
-            "Transporte de passageiros",
+            "Retirada e entrega de exames médicos",
             "Entregas expressas",
             "Depósitos bancários",
             "Retirada e envio nos correios"
@@ -133,10 +133,10 @@
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Transporte de Passageiros",
-                        "description": "Transporte seguro e confortável"
+                        "name": "Retirada e Entrega de Exames Médicos",
+                        "description": "Retirada e entrega de exames e documentos médicos em clínicas e laboratórios"
                     },
-                    "price": "5.00",
+                    "price": "7.00",
                     "priceCurrency": "BRL"
                 }
             ]
@@ -1370,13 +1370,13 @@
             <div class="service-card" tabindex="0">
                 <div>
                     <div class="service-icon">
-                        <i class="fas fa-user-friends"></i>
+                        <i class="fas fa-user-md"></i>
                     </div>
-                    <h3>Transporte de Passageiros</h3>
-                    <p>Levo você com segurança e conforto ao seu destino.</p>
-                    <div class="service-price">R$ 5,00</div>
+                    <h3>Retirada e Entrega de Exames e Documentos Médicos</h3>
+                    <p>Retiro e entrego exames e documentos médicos em clínicas e laboratórios com total segurança.</p>
+                    <div class="service-price">R$ 7,00</div>
                 </div>
-                <button class="service-btn" onclick="openServiceModal('transport')">
+                <button class="service-btn" onclick="openServiceModal('medical')">
                     Solicitar Agora
                 </button>
             </div>
@@ -1587,14 +1587,14 @@
         </div>
     </div>
 
-    <div id="transportModal" class="modal">
+    <div id="medicalModal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('transportModal')">&times;</button>
+            <button class="close-btn" onclick="closeModal('medicalModal')">&times;</button>
             <div class="modal-header">
-                <h2 class="modal-title">Transporte de Passageiros</h2>
-                <div class="modal-price">Valor do serviço: R$ 5,00</div>
+                <h2 class="modal-title">Retirada e Entrega de Exames e Documentos Médicos</h2>
+                <div class="modal-price">Valor do serviço: R$ 7,00</div>
             </div>
-            <form id="transportForm">
+            <form id="medicalForm">
                 <div class="form-group">
                     <label class="form-label">Nome Completo *</label>
                     <input type="text" class="form-input" required>
@@ -1604,16 +1604,31 @@
                     <input type="tel" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Endereço de Saída *</label>
+                    <label class="form-label">Tipo de Serviço *</label>
+                    <select class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="retirada-exames">Retirada de Exames</option>
+                        <option value="entrega-exames">Entrega de Exames</option>
+                        <option value="retirada-documentos">Retirada de Documentos Médicos</option>
+                        <option value="entrega-documentos">Entrega de Documentos Médicos</option>
+                        <option value="retirada-entrega">Retirada e Entrega</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Clínica ou Laboratório *</label>
+                    <input type="text" class="form-input" placeholder="Nome da clínica/laboratório" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Endereço da Clínica/Laboratório *</label>
                     <input type="text" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Endereço de Destino *</label>
+                    <label class="form-label">Endereço de Entrega *</label>
                     <input type="text" class="form-input" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Observações</label>
-                    <textarea class="form-textarea" placeholder="Horário preferido, número de passageiros..."></textarea>
+                    <textarea class="form-textarea" placeholder="Tipo de exame, nome do paciente, horário preferido, etc..."></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Enviar Solicitação</button>
             </form>
@@ -1956,7 +1971,7 @@
             'depositForm': 'Depósitos Bancários',
             'documentsForm': 'Retirada de Documentos',
             'billsForm': 'Pagamento de Contas',
-            'transportForm': 'Transporte de Passageiros'
+            'medicalForm': 'Retirada e Entrega de Exames e Documentos Médicos'
         };
 
         const servicePrices = {
@@ -1965,7 +1980,7 @@
             'depositForm': '6,00',
             'documentsForm': '7,00',
             'billsForm': '6,00',
-            'transportForm': '5,00'
+            'medicalForm': '7,00'
         };
 
         function handleFormSubmit(formId, e) {
